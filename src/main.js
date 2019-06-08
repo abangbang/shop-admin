@@ -7,6 +7,8 @@ import VueRouter from 'vue-router'
 
 //导入饿了么组件
 import ElementUI from "element-ui"
+//导入页面
+import Admin from "./pages/Admin"
 import Login from "./pages/Login.vue"
 
 //element的样式
@@ -18,6 +20,7 @@ Vue.use(ElementUI)
 Vue.use(VueRouter)
 // 配置路由
 const routes = [
+  {path:'/',component:Admin},
   {path:'/login',component:Login}
 ];
 
