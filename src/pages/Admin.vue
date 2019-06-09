@@ -12,7 +12,8 @@
       </el-header>
       <el-main>
           <Mianbao/>
-          Main
+          <!-- 子路由匹配到的组件 -->
+          <router-view></router-view>
       </el-main>
     </el-container>
   </el-container>
