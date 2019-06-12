@@ -14,7 +14,7 @@ export default {
        url:'https://api.github.com/',
       method:'GET',
     }).then(res => {
-      console.log(res);
+      // console.log(res);
     })
     
 

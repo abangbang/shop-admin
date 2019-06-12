@@ -12,6 +12,8 @@ import Admin from "./pages/Admin"
 import Login from "./pages/Login.vue"
 import GoodsList from "./pages/GoodsList.vue"
 import CategoryList from "./pages/CategoryList.vue"
+import GoodsAdd from "./pages/GoodsAdd.vue"
+import GoodsEdit from "./pages/GoodsEdit.vue"
 
 //element的样式
 import 'element-ui/lib/theme-chalk/index.css';
@@ -44,6 +46,16 @@ const routes = [{
         path: 'category-list',
         component: CategoryList,
         meta: '栏目列表'
+      },
+      {
+        path: 'goods-add',
+        component: GoodsAdd,
+        meta: '添加商品'
+      },
+      {
+        path: 'goods-edit/:id',
+        component: GoodsEdit,
+        meta: '编辑商品'
       }
     ]
   }

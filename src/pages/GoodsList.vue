@@ -4,7 +4,7 @@
     <el-row type="flex" justify="space-between">
       <!-- 按钮列表 -->
       <div>
-        <el-button>新增</el-button>
+        <el-button @click="handleToGoodsAdd">新增</el-button>
         <el-button type="danger" @click="handleDeleteMore">删除</el-button>
       </div>
       <!-- 搜索输入框 -->
@@ -59,7 +59,7 @@
       <el-table-column label="操作">
         <template slot-scope="scope">
           <!-- 编辑事件 -->
-          <el-button size="mini" @click="handleEdit( scope.row)">编辑</el-button>
+          <el-button size="mini" @click="handleEdit(scope.row)">编辑</el-button>
           <!-- 删除事件 -->
           <el-button size="mini" type="danger" @click="handleDelete( scope.row)">删除</el-button>
         </template>
@@ -130,7 +130,7 @@ export default {
         url: `http://localhost:8899/admin/goods/getlist?pageIndex=${this.pageIndex}&pageSize=${this.pageSize}&searchvalue=${this.searchValue}`,
         method: "GET"
       }).then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         const data = res.data;
         //商品列表的数据
         this.tableData = data.message;
@@ -146,7 +146,8 @@ export default {
     },
     //编辑商品
     handleEdit(goods) {
-      console.log(goods);
+      // console.log(goods); 
+      this.$router.push('/admin/goods-edit/'+ goods.id)
     },
     //删除单个商品
     handleDelete(goods) {
@@ -211,6 +212,9 @@ export default {
         // this.searchValue
         //发起请求 ，赋值给searchValue
         this.getList()
+    },
+    handleToGoodsAdd(){
+      this.$router.push('/admin/goods-add')
     }
   },
 
