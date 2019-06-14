@@ -208,8 +208,7 @@ export default {
           this.$message.success(message)
           this.$router.back();
         }else{
-          this.$message.error(message)
-          this.$router.push('/login')
+         this.$router.push("/login");
         }
       })
     }

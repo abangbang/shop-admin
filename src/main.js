@@ -61,9 +61,41 @@ const routes = [{
   }
 ];
 
-const router = new VueRouter({
-  routes
+//路由实例
+const router = new VueRouter({ routes });
+
+//路由守卫
+router.beforeEach((to,from,next) => {
+  //判断是否登录
+    axios({
+      url:'http://localhost:8899/admin/account/islogin',
+      method:'GET',
+      //处理session跨域
+      withCredentials:true
+    }).then(res => {
+      const {code} = res.data
+      //访问登陆页面开始判断
+      if(to.path === '/login'){
+        //如果已经登录
+        if(code === 'logined'){
+          next('/admin/good-list')    
+        }else{
+          // next('/login')
+          next();
+        }
+      }else{
+        //访问非登录页面开始判断
+        //如果已经登录
+        if(code === 'logined'){
+          next()
+        }else{
+          next('/login')
+        }
+      }
+      
+    })
 })
+
 
 Vue.config.productionTip = false
 //把axios绑定到原型 实现优化

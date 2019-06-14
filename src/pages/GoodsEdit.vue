@@ -118,7 +118,7 @@ export default {
     return {
       form: {
         category_id: "",
-        status: true,
+        status: false,
         is_top: false,
         is_hot: false,
         title: "",
@@ -152,7 +152,7 @@ export default {
       this.imageUrl = URL.createObjectURL(file.raw);
 
       //把上传成功的结果赋值给form.imList
-      console.log(res);
+      // console.log(res);
       this.form.imgList = [res];
     },
     // 上传之前执行的函数
@@ -193,7 +193,8 @@ export default {
       // })
       //   this.form.fileList = files;
 
-      this.form.fileList.push(file)
+      // this.form.fileList.push(file)
+      this.form.fileList.push(file.response);
       
     },
     onSubmit() {
@@ -244,8 +245,17 @@ export default {
 
       //对象合并
       this.form = {
+        //category_id转化为数字
         ...message,
-        category_id: + message.category_id
+        category_id: + message.category_id,
+        //修改图片的预览地址
+        fileList: message.fileList.map(v => {
+          // console.log(v);
+          return{
+              ...v,
+              url: `http://localhost:8899${v.shorturl}`
+          }
+        })
       }
       //imageUrl图片预览
       this.imageUrl = message.imgList[0].url;
